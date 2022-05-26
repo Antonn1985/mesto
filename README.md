@@ -1,5 +1,6 @@
 Проект: Место
-https://antonn1985.github.io/russian-travel/
+
+https://antonn1985.github.io/mesto/
 
 Проектная работа на Яндекс Практикуме. Этакая фотосоциальная сеть
 

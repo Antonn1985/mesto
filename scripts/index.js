@@ -3,8 +3,8 @@ const popup = document.querySelector('.popup')
 const closePopup = document.querySelector('.popup__close')
 const profileName = document.querySelector('.profile__name')
 const profileProfession = document.querySelector('.profile__profession')
-const popupName = document.querySelector('.popap__input_name')
-const popupProfession = document.querySelector('.popap__input_profession')
+const popupName = document.querySelector('.popap__input-name')
+const popupProfession = document.querySelector('.popap__input-profession')
 const formElement = document.querySelector('.popup__button')
 
 
