@@ -1,0 +1,9 @@
+.elements__title_last::before {
+    content: "Карачаево-Черкесия";
+}
+
+@media screen and (max-width: 767px) {
+    .elements__title_last::before {
+        content: "Карачаевск";
+    }
+}
