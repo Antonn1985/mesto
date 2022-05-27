@@ -5,7 +5,7 @@ const profileName = document.querySelector('.profile__name')
 const profileProfession = document.querySelector('.profile__profession')
 const popupName = document.querySelector('.popup__input_type_name')
 const popupProfession = document.querySelector('.popup__input_type_profession')
-const formElement = document.querySelector('.popup__button')
+const formElement = document.querySelector('.popup__form')
 
 
 editButton.addEventListener('click', function () {
@@ -25,4 +25,4 @@ function formSubmitHandler(evt) {
     profileName.textContent = popupName.value
     popup.classList.remove('popup_opened')
 }
-formElement.addEventListener('click', formSubmitHandler);
+formElement.addEventListener('submit', formSubmitHandler);

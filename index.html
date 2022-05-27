@@ -17,14 +17,11 @@
     <section class="profile page__profile">
       <img class="profile__avatar" src="images/avatar.jpg" alt="аватар">
       <div class="profile__info">
-        <h1 class="profile__name">Жак&nbsp;-&nbsp;Ив&nbsp;Кусто</h1>
-        <img class="profile__edit-button link" src="images/EditButton.svg" alt="кнопка">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <button type="button" class="profile__edit-button link"></button>
         <h2 class="profile__profession">Исследователь океана</h2>
       </div>
-      <picture class="profile__picture">
-        <source media="(max-width: 767px)" srcset="images/AddButton2.svg">
-        <img class="profile__add-button link" src="images/AddButton1.svg" alt="кнопка">
-      </picture>
+      <button type="button" class="profile__add-button link"></button>
     </section>
 
     <section class="elements page__elements">
@@ -32,42 +29,42 @@
         <img class="elements__image" src="images/karachevsk.jpg" alt="Карачаевск">
         <div class="elements__bottom">
           <h2 class="elements__title">Карачаевск</h2>
-          <div class="elements__like-heart link"></div>
+          <button type="button" class="elements__like-heart link"></button>
         </div>
       </div>
       <div class="elements__element">
         <img class="elements__image" src="images/elbrus.jpg" alt="Эльбрус">
         <div class="elements__bottom">
           <h2 class="elements__title">Гора Эльбрус</h2>
-          <div class="elements__like-heart link"></div>
+          <button type="button" class="elements__like-heart link"></button>
         </div>
       </div>
       <div class="elements__element">
         <img class="elements__image" src="images/dombai.jpg" alt="Домбай">
         <div class="elements__bottom">
           <h2 class="elements__title">Домбай</h2>
-          <div class="elements__like-heart link"></div>
+          <button type="button" class="elements__like-heart link"></button>
         </div>
       </div>
       <div class="elements__element">
         <img class="elements__image" src="images/elbrus.jpg" alt="Эльбрус">
         <div class="elements__bottom">
           <h2 class="elements__title">Гора Эльбрус</h2>
-          <div class="elements__like-heart link"></div>
+          <button type="button" class="elements__like-heart link"></button>
         </div>
       </div>
       <div class="elements__element">
         <img class="elements__image" src="images/dombai.jpg" alt="Домбай">
         <div class="elements__bottom">
           <h2 class="elements__title">Домбай</h2>
-          <div class="elements__like-heart link"></div>
+          <button type="button" class="elements__like-heart link"></button>
         </div>
       </div>
       <div class="elements__element">
         <img class="elements__image" src="images/karachevsk.jpg" alt="Карачаевск">
         <div class="elements__bottom">
-          <h2 class="elements__title elements__title_last"></h2>
-          <div class="elements__like-heart link"></div>
+          <h2 class="elements__title elements__title_last">Карачаево-Черкесия</h2>
+          <button type="button" class="elements__like-heart link"></button>
         </div>
       </div>
     </section>
@@ -80,11 +77,11 @@
 
   <div class="popup">
     <div class="popup__container">
-      <button class="popup__close link"></button>
+      <button type="button" class="popup__close link"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form action="mailto:minmro85@mail.ru" class="popup__form">
-        <input type="text" class="popup__input popup__input_type_name">
-        <input type="text" class="popup__input popup__input_type_profession">
+      <form action="" name="mestoForm" class="popup__form">
+        <input type="text" name="userName" class="popup__input popup__input_type_name">
+        <input type="text" name="userJob" class="popup__input popup__input_type_profession">
         <button type="submit" class="popup__button link">Сохранить</button>
       </form>
     </div>

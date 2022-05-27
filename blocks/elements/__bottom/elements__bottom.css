@@ -2,17 +2,17 @@
     display: flex;
     max-width: 246px;
     justify-content: space-between;
-    margin: 25px 0 0 21px;
+    margin: 22px 0 0 21px;
 }
 
 @media screen and (max-width: 1023px) {
     .elements__bottom {
-        margin: 10px auto 10px;
+        margin: 15px auto 0;
     }
 }
 
 @media screen and (max-width: 767px) {
     .elements__bottom {
-        margin: 25px 0 0 21px;
+        margin: 22px 0 0 21px;
     }
 }

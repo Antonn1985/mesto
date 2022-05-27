@@ -1,9 +1,11 @@
 .elements__like-heart {
     background-image: url(../../../images/heart.svg);
-    width: 31px;
+    width: 27px;
     height: 19px;
     background-repeat: no-repeat;
-    margin-top: 5px;
+    background-color: transparent;
+    border: none;
+    margin-top: 4px;
   }
 
 .elements__like-heart:hover {
