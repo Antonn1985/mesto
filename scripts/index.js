@@ -1,5 +1,5 @@
 const editButton = document.querySelector('.profile__edit-button')
-const popupUser = document.querySelector('.popup__name')
+const popupUser = document.querySelector('.popup-name')
 const closePopupUser = document.querySelector('.popup__close-name')
 const profileName = document.querySelector('.profile__name')
 const profileProfession = document.querySelector('.profile__profession')
@@ -68,7 +68,7 @@ const initialCards = [
 initialCards.reverse();
 
 const addButton = document.querySelector('.profile__add-button')
-const popupPhoto = document.querySelector('.popup__photo')
+const popupPhoto = document.querySelector('.popup-photo')
 const closePopupPhoto = document.querySelector('.popup__close-photo')
 const formElementPhoto = document.querySelector('.popup__form-photo')
 const popupPictureName = formElementPhoto.querySelector('.popup__input_type_picture-name')
