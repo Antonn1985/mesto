@@ -7,3 +7,4 @@ https://antonn1985.github.io/mesto/
 Используются технологии flex, grid, а также javascript
 
 Автор: Кошелев Антон.
+
