@@ -6,7 +6,6 @@ const profileProfession = document.querySelector('.profile__profession')
 const popupName = document.querySelector('.popup__input_type_name')
 const popupProfession = document.querySelector('.popup__input_type_profession')
 const formElementUser = document.querySelector('.popup__form-name')
-const popup = document.querySelector('.popup')
 const placeForplaces = document.querySelector('.elements');
 const templateForPlaces = document.querySelector('.elements__template');
 const buttonAdd = document.querySelector('.profile__add-button')
@@ -51,9 +50,10 @@ function addCardsBegin(name, link) {
     openPopup(imagePopup)
     imageCaption.textContent = name;
     imagePicture.src = link;
+    imagePicture.alt = name;
   });
   cardsElement.querySelector('.elements__trash').addEventListener('click', function (evt) {
-    const elementRemove = evt.currentTarget.parentElement.parentElement;
+    const elementRemove = evt.currentTarget.closest('.elements__element');
     elementRemove.remove();
   });
   return cardsElement;
