@@ -1,4 +1,4 @@
-.popup__button {
+.form__button {
     font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -8,23 +8,28 @@
     color: white;
     max-width: 358px;
     min-height: 50px;
-    margin-top: 46px;
-    border: none;
+    margin-top: 16px;
     border-radius: 2px;
 }
 
 @media screen and (max-width: 1023px) {
-    .popup__button {
+    .form__button {
         max-width: 298px;
     }
 }
 
 @media screen and (max-width: 767px) {
-    .popup__button {
+    .form__button {
         max-width: 238px;
         font-size: 14px;
         line-height: 17px;
-        margin-top: 45px;
         min-height: 46px;
     }
+}
+
+.form__button_disabled {
+    background-color: #FFFFFF;
+    color: #000000;
+    opacity: 0.5;
+    border: 1px solid rgba(0, 0, 0, .5);
 }
