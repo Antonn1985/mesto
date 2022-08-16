@@ -20,7 +20,12 @@ const imageCaption = document.querySelector('.image-popup__caption')
 const imagePicture = document.querySelector('.image-popup__picture')
 
 
-
+const errorRemove = () => {
+  const inputError = Array.from(document.querySelectorAll('.form__input'));
+  inputError.forEach(input => { input.classList.remove('form__input_type_error'); })
+  const textError = Array.from(document.querySelectorAll('.form__input-error'));
+  textError.forEach(text => { text.classList.remove('form__input-error_active'); })
+}
 
 
 function openPopup(popup) {
@@ -116,6 +121,7 @@ imageClose.addEventListener('click', function () {
 
 buttonAdd.addEventListener('click', function () {
   openPopup(popupPhoto);
+  errorRemove();
 })
 
 popupPhotoClose.addEventListener('click', function () {

@@ -10,11 +10,8 @@
     box-sizing: border-box;
     min-height: 30px;
     visibility: hidden; 
-    opacity: 0;
-    transition: visibility 0.5s, opacity 0.5s linear;
 }
 
 .form__input-error_active {
     visibility: visible;
-    opacity: 1;
 }
