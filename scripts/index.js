@@ -6,7 +6,7 @@ const profileProfession = document.querySelector('.profile__profession')
 const popupName = document.querySelector('.form__input_type_name')
 const popupProfession = document.querySelector('.form__input_type_profession')
 const formElementUser = document.querySelector('.form-name')
-const placeForplaces = document.querySelector('.elements');
+const cardList = document.querySelector('.elements');
 const templateForPlaces = document.querySelector('.elements__template').content.querySelector('.elements__element')
 const buttonAdd = document.querySelector('.profile__add-button')
 const popupPhoto = document.querySelector('.popup-photo')
@@ -19,47 +19,42 @@ const imageClose = document.querySelector('.image-popup__close')
 const imageCaption = document.querySelector('.image-popup__caption')
 const imagePicture = document.querySelector('.image-popup__picture')
 
-
-const errorRemove = () => {
-  const inputError = Array.from(document.querySelectorAll('.form__input'));
-  inputError.forEach(input => { input.classList.remove('form__input_type_error'); })
-  const textError = Array.from(document.querySelectorAll('.form__input-error'));
-  textError.forEach(text => { text.classList.remove('form__input-error_active'); })
-}
-
+const currentPopup = Array.from(document.querySelectorAll('.popup'));
 
 function openPopup(popup) {
-  popup.classList.add('popup_opened')
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', function (evt) {
+    escPopup(evt)
+  })
 }
 
 function closePopup(popup) {
-  popup.classList.remove('popup_opened')
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', function (evt) {
+    escPopup(evt)
+  })
 }
 
 function escPopup(evt) {
-  const currentPopup = document.querySelector('.' + 'popup_opened');
   if (evt.key === 'Escape') {
-    currentPopup.classList.remove('popup_opened');
-    formElementPhoto.reset();
+    currentPopup.forEach(item => { item.classList.remove('popup_opened'); })
   }
 }
 
 function clickOutside(evt) {
-  const currentPopup = document.querySelector('.' + 'popup_opened');
   if (evt.target.classList.contains('popup_opened')) {
-    currentPopup.classList.remove('popup_opened');
-    formElementPhoto.reset();
+    currentPopup.forEach(item => { item.classList.remove('popup_opened'); })
   }
 }
 
-function formSubmitHandler(evt) {
+function submitEditProfileForm(evt) {
   evt.preventDefault();
   profileProfession.textContent = popupProfession.value
   profileName.textContent = popupName.value
   closePopup(popupUser)
 }
 
-function addCardsBegin(name, link) {
+function createCard(name, link) {
   const cardsElement = templateForPlaces.cloneNode(true);
   imageElement = cardsElement.querySelector('.elements__image')
   cardsElement.querySelector('.elements__title').textContent = name;
@@ -80,30 +75,28 @@ function addCardsBegin(name, link) {
   return cardsElement;
 }
 
-
 function photoFormSubmitHandler(evt) {
   const cardInfo = {
     name: popupPictureName.value,
     link: popupPictureLink.value,
     alt: popupPictureName.value
   }
-  const newCard = addCardsBegin(cardInfo.name, cardInfo.link);
-  placeForplaces.prepend(newCard)
+  const newCard = createCard(cardInfo.name, cardInfo.link);
+  cardList.prepend(newCard)
   evt.preventDefault();
-  formElementPhoto.reset();
   closePopup(popupPhoto);
+  buttonRemove(validationConfig)
 }
 
-
 initialCards.forEach(function ({ name, link }) {
-  placeForplaces.prepend(addCardsBegin(name, link))
+  cardList.prepend(createCard(name, link))
 })
 
 buttonEdit.addEventListener('click', function () {
   openPopup(popupUser)
   popupName.value = profileName.textContent
   popupProfession.value = profileProfession.textContent;
-  let eventInput = new Event("input");
+  const eventInput = new Event("input");
   popupName.dispatchEvent(eventInput);
   popupProfession.dispatchEvent(eventInput);
 })
@@ -112,8 +105,7 @@ popupUserClose.addEventListener('click', function () {
   closePopup(popupUser)
 })
 
-formElementUser.addEventListener('submit', formSubmitHandler);
-
+formElementUser.addEventListener('submit', submitEditProfileForm);
 
 imageClose.addEventListener('click', function () {
   closePopup(imagePopup);
@@ -121,21 +113,18 @@ imageClose.addEventListener('click', function () {
 
 buttonAdd.addEventListener('click', function () {
   openPopup(popupPhoto);
-  errorRemove();
+  errorRemove(validationConfig);
+  formElementPhoto.reset();
 })
 
 popupPhotoClose.addEventListener('click', function () {
   closePopup(popupPhoto);
-  formElementPhoto.reset();
 })
 
 formElementPhoto.addEventListener('submit', photoFormSubmitHandler);
 
-document.addEventListener('keydown', function (evt) {
-  escPopup(evt)
+currentPopup.forEach(function () {
+  addEventListener('click', function (evt) {
+    clickOutside(evt)
+  })
 })
-
-document.body.addEventListener('click', function (evt) {
-  clickOutside(evt)
-})
-
