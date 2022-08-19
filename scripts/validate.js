@@ -9,10 +9,10 @@ const validationConfig = {
   inputErrorPassive: '.form__input-error'
 }
 
-const removeValidationErrors = (validationConfig, photoForm) => {
-  const inputError = Array.from(photoForm.querySelectorAll(validationConfig.inputSelector));
+const removeValidationErrors = (validationConfig, form) => {
+  const inputError = Array.from(form.querySelectorAll(validationConfig.inputSelector));
   inputError.forEach(input => { input.classList.remove(validationConfig.inputErrorClass); })
-  const textError = Array.from(photoForm.querySelectorAll(validationConfig.inputErrorPassive));
+  const textError = Array.from(form.querySelectorAll(validationConfig.inputErrorPassive));
   textError.forEach(text => { text.classList.remove(validationConfig.errorClass); })
 }
 
