@@ -27,7 +27,8 @@
     }
 }
 
-.form__button_disabled {
+.form__button_disabled,
+.form__button_disabled:hover {
     background-color: #FFFFFF;
     color: #000000;
     opacity: 0.5;

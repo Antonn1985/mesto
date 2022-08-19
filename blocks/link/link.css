@@ -1,5 +1,5 @@
 .link {
-    transition: opacity 1s linear 0.5s;
+    transition: opacity 0.3s linear;
     cursor: pointer;
 }
 

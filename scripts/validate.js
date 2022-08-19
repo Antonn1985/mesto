@@ -9,17 +9,14 @@ const validationConfig = {
   inputErrorPassive: '.form__input-error'
 }
 
-const errorRemove = (validationConfig) => {
-  const photoForm = document.querySelector(validationConfig.formPhoto)
+const removeValidationErrors = (validationConfig, photoForm) => {
   const inputError = Array.from(photoForm.querySelectorAll(validationConfig.inputSelector));
   inputError.forEach(input => { input.classList.remove(validationConfig.inputErrorClass); })
   const textError = Array.from(photoForm.querySelectorAll(validationConfig.inputErrorPassive));
   textError.forEach(text => { text.classList.remove(validationConfig.errorClass); })
 }
 
-const buttonRemove = (validationConfig) => {
-  const photoForm = document.querySelector(validationConfig.formPhoto)
-  const buttonError = (photoForm.querySelector(validationConfig.submitButtonSelector));
+const disableSubmitButton = (validationConfig, buttonError) => {
   buttonError.classList.add(validationConfig.inactiveButtonClass);
   buttonError.setAttribute("disabled", false)
 }
@@ -62,7 +59,6 @@ const enableValidation = (validationConfig) => {
     formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-
     setEventListeners(formElement, validationConfig);
   });
 }
