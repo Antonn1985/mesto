@@ -66,7 +66,7 @@ const imagePopup = document.querySelector('.image-popup')
 const imageClose = document.querySelector('.image-popup__close')
 const imageCaption = document.querySelector('.image-popup__caption')
 const imagePicture = document.querySelector('.image-popup__picture')
-const popupPictureButton = document.querySelector('.form_button_type_picture')
+const popupPictureButton = document.querySelector('.form__button_type_picture')
 
 const allPopups = Array.from(document.querySelectorAll('.popup'));
 
