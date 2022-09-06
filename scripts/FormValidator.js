@@ -16,24 +16,24 @@ export default class FormValidator {
     });
   }
   _checkInputValidity = () => {
+    this._error = this._formElement.querySelector((`.${this._inputElement.id}-error`))
     if (!this._inputElement.validity.valid) {
       this._showError();
     } else {
       this._hideError();
     }
+    return this._error
   };
 
   _showError = () => {
-    const error = this._formElement.querySelector((`.${this._inputElement.id}-error`))
     this._inputElement.classList.add(this._validationConfig.inputErrorClass);
-    error.textContent = this._inputElement.validationMessage;
-    error.classList.add(this._validationConfig.errorClass);
+    this._error.textContent = this._inputElement.validationMessage;
+    this._error.classList.add(this._validationConfig.errorClass);
   };
 
   _hideError() {
-    const error = this._formElement.querySelector((`.${this._inputElement.id}-error`))
     this._inputElement.classList.remove(this._validationConfig.inputErrorClass);
-    error.classList.remove(this._validationConfig.errorClass);
+    this._error.classList.remove(this._validationConfig.errorClass);
   };
 
   enableValidation() {
