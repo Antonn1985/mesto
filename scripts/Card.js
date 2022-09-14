@@ -19,23 +19,24 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.elements__image')
     this._setEventListeners()
-    this._element.querySelector('.elements__image').src = this._link;
-    this._element.querySelector('.elements__image').alt = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     this._element.querySelector('.elements__title').textContent = this._name;
 
     return this._element;
   }
 
-  _removeCard(element) {
-    element.remove();
+  _removeCard(_element) {
+    this._element.remove();
   }
 
   _likeToggle = (evt) => {
     evt.target.classList.toggle('elements__like-heart_active')
   }
 
-  _popup = () => {
+  _handlePreviewPicture = () => {
     openPopup(imagePopup)
     imageCaption.textContent = this._name;
     imagePicture.src = this._link;
@@ -47,7 +48,7 @@ export default class Card {
     this._element.querySelector('.elements__trash').addEventListener('click', () => {
       this._removeCard(this._element)
     })
-    this._element.querySelector('.elements__image').addEventListener('click', this._popup)
+    this._cardImage.addEventListener('click', this._handlePreviewPicture)
   };
 }
 
