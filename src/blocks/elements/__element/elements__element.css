@@ -1,21 +1,21 @@
 .elements__element {
-    width: 100%;
-    border-radius: 10px;
-    background-color: white;
-    padding-bottom: 27px;
-    position: relative;
+  width: 100%;
+  border-radius: 10px;
+  background-color: white;
+  padding-bottom: 27px;
+  position: relative;
 }
 
 @media screen and (max-width: 1023px) {
-    .elements__element {
-        padding-bottom: 23px;
-    }
+  .elements__element {
+    padding-bottom: 23px;
+  }
 }
 
 @media screen and (max-width: 767px) {
-    .elements__element {
-        max-width: 282px;
-        margin: 0 auto;
-        padding-bottom: 27px;
-    }
+  .elements__element {
+    max-width: 282px;
+    margin: 0 auto;
+    padding-bottom: 27px;
+  }
 }
