@@ -15,7 +15,6 @@ import {
 } from "../utils/constants.js";
 import "./index.css";
 import Section from "../components/Section.js";
-import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
@@ -31,12 +30,6 @@ const formValidPhoto = new FormValidator(
   formElementPhoto
 );
 formValidPhoto.enableValidation();
-
-const photoPopup = new Popup(".popup-photo");
-photoPopup.setEventListeners();
-
-const userPopup = new Popup(".popup-name");
-userPopup.setEventListeners();
 
 const imagePopup = new PopupWithImage(".image-popup");
 imagePopup.setEventListeners();
@@ -82,7 +75,7 @@ function handlePhotoFormSubmit(formValues) {
 initialCards.reverse();
 
 buttonEdit.addEventListener("click", function () {
-  userPopup.open();
+  editNamePopup.open();
   const currentUserInfo = userInfo.getUserInfo();
   popupName.value = currentUserInfo.userName;
   popupProfession.value = currentUserInfo.userJob;
@@ -93,7 +86,7 @@ buttonAdd.addEventListener("click", function () {
   formValidPhoto.removeValidationErrors();
   formValidPhoto.disableSubmitButton();
   formElementPhoto.reset();
-  photoPopup.open();
+  addCardPopup.open();
 });
 
 cardSection.renderItems(initialCards);
