@@ -91,4 +91,4 @@ buttonAdd.addEventListener("click", function () {
 
 cardSection.renderItems(initialCards);
 
-console.log('fff')
+
