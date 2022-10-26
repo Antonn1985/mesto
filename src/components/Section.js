@@ -5,8 +5,12 @@ export default class Section {
     this._renderedItems = items;
   }
 
-  addItem(element) {
-    this._container.prepend(element);
+  addItem(element, order = false) {
+    if (order) {
+      this._container.append(element);
+    } else {
+      this._container.prepend(element);
+    }
   }
 
   renderItems(array) {

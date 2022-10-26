@@ -1,7 +1,12 @@
 export default class UserInfo {
-  constructor({ userNameSelector, userDescriptionSelector }) {
+  constructor({
+    userNameSelector,
+    userDescriptionSelector,
+    userAvatarSelector,
+  }) {
     this._userNameSelector = userNameSelector;
     this._userDescriptionSelector = userDescriptionSelector;
+    this._userAvatarSelector = userAvatarSelector;
   }
 
   getUserInfo() {
@@ -11,8 +16,17 @@ export default class UserInfo {
     return this._userInfo;
   }
 
-  setUserInfo(popupName, popupJob) {
-    this._userNameSelector.textContent = popupName.value;
-    this._userDescriptionSelector.textContent = popupJob.value;
+  setUserName(data) {
+    this._userNameSelector.textContent = data.name;
+    this._userDescriptionSelector.textContent = data.about;
+  }
+
+  setUserInfo(data) {
+    this._userAvatarSelector.src = data.avatar;
+    this._id = data.id;
+  }
+
+  getId() {
+    return this._id;
   }
 }

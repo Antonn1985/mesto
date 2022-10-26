@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="pages/index.css" />
     <title>Место</title>
   </head>
 
@@ -17,15 +18,20 @@
 
     <main class="content">
       <section class="profile page__profile" aria-label="аватар">
-        <img
-          class="profile__avatar"
-          src="<%=require('./images/avatar.jpg')%>"
-          alt="аватар"
-        />
+        <div class="profile__photo link">
+          <img class="profile__avatar" src="URL" alt="аватар" />
+          <div class="profile__avatar-mask">
+            <img
+              class="profile__avatar-edit"
+              src="<%=require('./images/pencil.svg')%>"
+              alt="карандаш"
+            />
+          </div>
+        </div>
         <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name"></h1>
           <button type="button" class="profile__edit-button link"></button>
-          <h2 class="profile__profession">Исследователь океана</h2>
+          <h2 class="profile__profession"></h2>
         </div>
         <button type="button" class="profile__add-button link"></button>
       </section>
@@ -44,7 +50,7 @@
           class="popup__close popup__close-name link"
         ></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form action="URL" name="mestoForm" class="form form-name" novalidate>
+        <form action="URL" name="mestoForm" class="form form__name" novalidate>
           <input
             type="text"
             name="userName"
@@ -67,7 +73,12 @@
             maxlength="200"
           />
           <span class="form__input-error profession-input-error"></span>
-          <button type="submit" class="form__button link">Сохранить</button>
+          <button
+            type="submit"
+            class="form__button form__button_type_name link"
+          >
+            Сохранить
+          </button>
         </form>
       </div>
     </div>
@@ -82,7 +93,7 @@
         <form
           action="URL"
           name="pictureForm"
-          class="form form-photo"
+          class="form form__photo"
           novalidate
         >
           <input
@@ -115,6 +126,38 @@
       </div>
     </div>
 
+    <div class="popup popup-avatar">
+      <div class="popup__container popup__container-avatar">
+        <button
+          type="button"
+          class="popup__close popup__close-avatar link"
+        ></button>
+        <h3 class="popup__title">Обновить аватар</h3>
+        <form
+          action="URL"
+          name="avatarForm"
+          class="form form__avatar"
+          novalidate
+        >
+          <input
+            type="url"
+            name="avatarLink"
+            placeholder="Ссылка на картинку"
+            class="form__input form__input_type_avatar-link"
+            id="avatar-link-input"
+            required
+          />
+          <span class="form__input-error avatar-link-input-error"></span>
+          <button
+            type="submit"
+            class="form__button form__button_type_avatar link"
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+
     <div class="popup image-popup">
       <figure class="image-popup__figure">
         <button
@@ -126,6 +169,29 @@
       </figure>
     </div>
 
+    <div class="popup popup-delete">
+      <div class="popup__container popup__container-delete">
+        <button
+          type="button"
+          class="popup__close popup__close-delete link"
+        ></button>
+        <h3 class="popup__title">Вы уверены?</h3>
+        <form
+          action="URL"
+          name="deleteForm"
+          class="form form__delete"
+          novalidate
+        >
+          <button
+            type="submit"
+            class="form__button form__button_type_delete link"
+          >
+            Да
+          </button>
+        </form>
+      </div>
+    </div>
+
     <template class="elements__template">
       <div class="elements__element">
         <div class="elements__top">
@@ -134,7 +200,10 @@
         </div>
         <div class="elements__bottom">
           <h2 class="elements__title"></h2>
-          <button type="button" class="elements__like-heart link"></button>
+          <div class="elements__like">
+            <button type="button" class="elements__like-heart link"></button>
+            <span class="elements__like-counter">0</span>
+          </div>
         </div>
       </div>
     </template>

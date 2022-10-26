@@ -1,29 +1,10 @@
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+const config = {
+  url: "https://mesto.nomoreparties.co/v1/cohort-51",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "7f566e4f-f93a-41b2-81ab-61db9108a2c8",
   },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  // {
-  //   name: "Холмогорский район",
-  //   link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  // },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+};
 
 const validationConfig = {
   inputSelector: ".form__input",
@@ -35,21 +16,26 @@ const validationConfig = {
   inputErrorPassive: ".form__input-error",
 };
 
-const buttonEdit = document.querySelector(".profile__edit-button");
+const buttonEditName = document.querySelector(".profile__edit-button");
+const profileAvatar = document.querySelector(".profile__avatar");
 const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__profession");
 const popupName = document.querySelector(".form__input_type_name");
 const popupProfession = document.querySelector(".form__input_type_profession");
 const cardList = ".elements";
 const buttonAdd = document.querySelector(".profile__add-button");
-const formElementPhoto = document.querySelector(".form-photo");
-const formElementName = document.querySelector(".form-name");
-
+const formElementPhoto = document.querySelector(".form__photo");
+const formElementName = document.querySelector(".form__name");
+const formElementAvatar = document.querySelector(".form__avatar");
+const buttonAvatar = document.querySelector(".profile__photo");
+const buttonSaveName = document.querySelector(".form__button_type_name");
+const buttonSavePicture = document.querySelector(".form__button_type_picture");
+const buttonSaveAvatar = document.querySelector(".form__button_type_avatar");
 
 export {
-  initialCards,
+  config,
   validationConfig,
-  buttonEdit,
+  buttonEditName,
   profileName,
   profileProfession,
   popupName,
@@ -57,5 +43,11 @@ export {
   cardList,
   buttonAdd,
   formElementPhoto,
-  formElementName
+  formElementName,
+  profileAvatar,
+  buttonAvatar,
+  formElementAvatar,
+  buttonSaveAvatar,
+  buttonSaveName,
+  buttonSavePicture,
 };

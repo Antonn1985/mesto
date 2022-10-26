@@ -9,8 +9,13 @@
   top: 20px;
   right: 20px;
   background-size: cover;
+  display: none;
 }
 
 .elements__trash:hover {
   opacity: 0.6;
+}
+
+.elements__trash_active {
+  display: block;
 }

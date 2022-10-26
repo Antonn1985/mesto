@@ -1,9 +1,9 @@
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
 import {
-  initialCards,
+  config,
   validationConfig,
-  buttonEdit,
+  buttonEditName,
   profileName,
   profileProfession,
   popupName,
@@ -11,25 +11,30 @@ import {
   cardList,
   buttonAdd,
   formElementPhoto,
-  formElementName
+  formElementName,
+  profileAvatar,
+  buttonAvatar,
+  formElementAvatar,
+  buttonSaveAvatar,
+  buttonSaveName,
+  buttonSavePicture,
 } from "../utils/constants.js";
 import "./index.css";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupDelete from "../components/PopupDelete.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 
-const formValidName = new FormValidator(
-  validationConfig,
-  formElementName
-);
+const formValidName = new FormValidator(validationConfig, formElementName);
 formValidName.enableValidation();
 
-const formValidPhoto = new FormValidator(
-  validationConfig,
-  formElementPhoto
-);
+const formValidPhoto = new FormValidator(validationConfig, formElementPhoto);
 formValidPhoto.enableValidation();
+
+const formValidAvatar = new FormValidator(validationConfig, formElementAvatar);
+formValidAvatar.enableValidation();
 
 const imagePopup = new PopupWithImage(".image-popup");
 imagePopup.setEventListeners();
@@ -40,41 +45,146 @@ addCardPopup.setEventListeners();
 const editNamePopup = new PopupWithForm(".popup-name", submitEditProfileForm);
 editNamePopup.setEventListeners();
 
+const editAvatarPopup = new PopupWithForm(
+  ".popup-avatar",
+  submitEditAvatarForm
+);
+editAvatarPopup.setEventListeners();
+
+const deletePopup = new PopupDelete(".popup-delete");
+deletePopup.setEventListeners();
+
 const userInfo = new UserInfo({
   userNameSelector: profileName,
   userDescriptionSelector: profileProfession,
+  userAvatarSelector: profileAvatar,
 });
 
 const cardSection = new Section(
   {
     renderer: (item) => {
-      cardSection.addItem(createCard(item));
+      cardSection.addItem(createCard(item), true);
     },
   },
   cardList
 );
 
+const api = new Api(config);
+
 function handleCardClick(data) {
   imagePopup.open(data);
 }
 
-function submitEditProfileForm() {
-  userInfo.setUserInfo(popupName, popupProfession);
+function handleCardDelete(card) {
+  deletePopup.open();
+  deletePopup.setSubmitAction(() => {
+    api
+      .removeCard(card.getId())
+      .then(function () {
+        card.remove();
+        deletePopup.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+}
+
+function handleClickLike(card) {
+  api
+    .changeLike(card.getId(), card.isLiked())
+    .then((data) => {
+      card.setLikes(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+function submitEditProfileForm(dataObj) {
+  buttonSaveName.textContent = "Сохранение...";
+  api
+    .sendName(dataObj)
+    .then((data) => {
+      userInfo.setUserName({ name: data.name, about: data.about });
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .then(() => {
+      buttonSaveName.textContent = "Сохранить";
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+function submitEditAvatarForm(dataObj) {
+  buttonSaveAvatar.textContent = "Сохранение...";
+  api
+    .changeAvatar(dataObj)
+    .then((data) => {
+      userInfo.setUserInfo({ avatar: data.avatar });
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .then(() => {
+      buttonSaveAvatar.textContent = "Сохранить";
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 function createCard(item) {
-  const card = new Card({ data: item, handleCardClick }, ".elements__template");
+  const card = new Card(
+    { data: item, handleCardClick, handleCardDelete, handleClickLike },
+    userInfo.getId(),
+    ".elements__template"
+  );
   const cardElement = card.generateCard();
   return cardElement;
 }
 
 function handlePhotoFormSubmit(formValues) {
-  cardSection.addItem(createCard(formValues));
+  buttonSavePicture.textContent = "Сохранение...";
+  api
+    .sendCard(formValues)
+    .then((data) => {
+      cardSection.addItem(createCard(data));
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .then(() => {
+      buttonSavePicture.textContent = "Сохранить";
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
-initialCards.reverse();
+api
+  .getAllCards()
+  .then(function (data) {
+    cardSection.renderItems(data);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-buttonEdit.addEventListener("click", function () {
+api
+  .getName()
+  .then(function (data) {
+    userInfo.setUserInfo({ avatar: data.avatar, id: data._id });
+    userInfo.setUserName({ name: data.name, about: data.about });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+buttonEditName.addEventListener("click", function () {
   editNamePopup.open();
   const currentUserInfo = userInfo.getUserInfo();
   popupName.value = currentUserInfo.userName;
@@ -89,6 +199,9 @@ buttonAdd.addEventListener("click", function () {
   addCardPopup.open();
 });
 
-cardSection.renderItems(initialCards);
-
-
+buttonAvatar.addEventListener("click", function () {
+  formValidAvatar.removeValidationErrors();
+  formValidAvatar.disableSubmitButton();
+  formElementAvatar.reset();
+  editAvatarPopup.open();
+});
