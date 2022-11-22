@@ -44,7 +44,7 @@
 @import url(../blocks/image-popup/__picture/image-popup__picture.css);
 @import url(../blocks/image-popup/__caption/image-popup__caption.css);
 @import url(../blocks/form/form.css);
-@import url(../blocks/form/__delete/form__delete.css);
+@import url(../blocks/form/__type-delete/form__type-delete.css);
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__input-error/form__input-error.css);
 @import url(../blocks/form/__button/form__button.css);
