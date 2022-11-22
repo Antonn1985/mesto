@@ -44,7 +44,7 @@
 .image-popup__picture{max-height:75vh;max-width:75vw}
 .image-popup__caption{font-family:Inter,Arial,Helvetica,sans-serif;font-size:12px;font-style:normal;font-weight:400;line-height:15px;margin:0;padding:0}
 .form{display:flex;flex-direction:column;margin-top:49px}@media screen and (max-width:767px){.form{margin-top:75px}}
-.form__type-delete{margin-top:22px}
+.form-delete{margin-top:22px}
 .form__input{border:none;border-bottom:1px solid rgba(0,0,0,.2);box-sizing:border-box;color:#000;font-family:Inter,Arial,Helvetica,sans-serif;font-size:14px;font-style:normal;font-weight:400;height:27px;line-height:17px;margin:0;max-width:358px;outline:none;padding:0 0 13px}@media screen and (max-width:1023px){.form__input{max-width:298px}}@media screen and (max-width:767px){.form__input{max-width:238px}}.form__input_type_error{border-bottom:1px solid red}
 .form__input-error{box-sizing:border-box;color:red;font-family:Inter,Arial,Helvetica,sans-serif;font-size:12px;font-style:normal;font-weight:400;line-height:15px;margin:5px 0 0;min-height:30px;padding:0;visibility:hidden}.form__input-error_active{visibility:visible}
 .form__button{background-color:#000;border-radius:2px;color:#fff;font-family:Inter,Arial,Helvetica,sans-serif;font-size:18px;font-style:normal;font-weight:400;line-height:22px;margin-top:16px;max-width:358px;min-height:50px}@media screen and (max-width:1023px){.form__button{max-width:298px}}@media screen and (max-width:767px){.form__button{font-size:14px;line-height:17px;max-width:238px;min-height:46px}}.form__button_disabled,.form__button_disabled:hover{background-color:#fff;border:1px solid rgba(0,0,0,.5);color:#000;opacity:.5}
