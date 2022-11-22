@@ -7,6 +7,7 @@
   background-color: transparent;
   border: none;
   background-size: cover;
+  outline: none;
 }
 
 @media screen and (max-width: 1023px) {
