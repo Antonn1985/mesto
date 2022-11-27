@@ -12,6 +12,9 @@ export default class Card {
     this._ownerId = ownerId;
     this._cardOwnerId = data.owner._id;
     this._element = this._getTemplate();
+    this._likeCounter = this._element.querySelector(".elements__like-counter");
+    this._likeHeart = this._element.querySelector(".elements__like-heart");
+    this._trash = this._element.querySelector(".elements__trash")
   }
 
   _getTemplate() {
@@ -39,15 +42,13 @@ export default class Card {
   }
 
   _updateLikes() {
-    this._element.querySelector(".elements__like-counter").textContent =
+    this._likeCounter.textContent =
       this._data.likes.length;
     if (this.isLiked()) {
-      this._element
-        .querySelector(".elements__like-heart")
+      this._likeHeart
         .classList.add("elements__like-heart_active");
     } else {
-      this._element
-        .querySelector(".elements__like-heart")
+      this._likeHeart
         .classList.remove("elements__like-heart_active");
     }
   }
@@ -61,8 +62,7 @@ export default class Card {
       this._data.name;
     this._updateLikes();
     if (this._ownerId === this._cardOwnerId) {
-      this._element
-        .querySelector(".elements__trash")
+      this._trash
         .classList.add("elements__trash_active");
     }
 
@@ -75,13 +75,11 @@ export default class Card {
   }
 
   _setEventListeners = () => {
-    this._element
-      .querySelector(".elements__trash")
+    this._trash
       .addEventListener("click", () => {
         this._handleCardDelete(this);
       });
-    this._element
-      .querySelector(".elements__like-heart")
+    this._likeHeart
       .addEventListener("click", () => {
         this._handleClickLike(this);
       });

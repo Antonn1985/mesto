@@ -107,16 +107,14 @@ function submitEditProfileForm(dataObj) {
     .sendName(dataObj)
     .then((data) => {
       userInfo.setUserName({ name: data.name, about: data.about });
+      editNamePopup.close();
     })
     .catch((err) => {
       console.log(err);
     })
-    .then(() => {
+    .finally(() => {
       buttonSaveName.textContent = "Сохранить";
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    })  
 }
 
 function submitEditAvatarForm(dataObj) {
@@ -125,16 +123,14 @@ function submitEditAvatarForm(dataObj) {
     .changeAvatar(dataObj)
     .then((data) => {
       userInfo.setUserInfo({ avatar: data.avatar });
+      editAvatarPopup.close()
     })
     .catch((err) => {
       console.log(err);
     })
-    .then(() => {
+    .finally(() => {
       buttonSaveAvatar.textContent = "Сохранить";
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    })  
 }
 
 function createCard(item) {
@@ -153,32 +149,21 @@ function handlePhotoFormSubmit(formValues) {
     .sendCard(formValues)
     .then((data) => {
       cardSection.addItem(createCard(data));
+      addCardPopup.close();
     })
     .catch((err) => {
       console.log(err);
     })
-    .then(() => {
-      buttonSavePicture.textContent = "Сохранить";
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    .finally(() => {
+      buttonSavePicture.textContent = "Создать";
+    })  
 }
 
-api
-  .getAllCards()
-  .then(function (data) {
-    cardSection.renderItems(data);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-api
-  .getName()
-  .then(function (data) {
+  Promise.all([api.getName(), api.getAllCards()])
+  .then(([data, array]) => {
     userInfo.setUserInfo({ avatar: data.avatar, id: data._id });
     userInfo.setUserName({ name: data.name, about: data.about });
+    cardSection.renderItems(array);
   })
   .catch((err) => {
     console.log(err);
@@ -195,13 +180,11 @@ buttonEditName.addEventListener("click", function () {
 buttonAdd.addEventListener("click", function () {
   formValidPhoto.removeValidationErrors();
   formValidPhoto.disableSubmitButton();
-  formElementPhoto.reset();
   addCardPopup.open();
 });
 
 buttonAvatar.addEventListener("click", function () {
   formValidAvatar.removeValidationErrors();
   formValidAvatar.disableSubmitButton();
-  formElementAvatar.reset();
   editAvatarPopup.open();
 });
