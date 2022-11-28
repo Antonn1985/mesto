@@ -30,7 +30,7 @@ module.exports = {
       },
       {
         test: /\.md$/i,
-        use: 'raw-loader',
+        use: "raw-loader",
       },
       {
         test: /\.js$/,

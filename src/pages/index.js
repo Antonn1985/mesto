@@ -114,7 +114,7 @@ function submitEditProfileForm(dataObj) {
     })
     .finally(() => {
       buttonSaveName.textContent = "Сохранить";
-    })  
+    });
 }
 
 function submitEditAvatarForm(dataObj) {
@@ -123,14 +123,14 @@ function submitEditAvatarForm(dataObj) {
     .changeAvatar(dataObj)
     .then((data) => {
       userInfo.setUserInfo({ avatar: data.avatar });
-      editAvatarPopup.close()
+      editAvatarPopup.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
       buttonSaveAvatar.textContent = "Сохранить";
-    })  
+    });
 }
 
 function createCard(item) {
@@ -156,10 +156,10 @@ function handlePhotoFormSubmit(formValues) {
     })
     .finally(() => {
       buttonSavePicture.textContent = "Создать";
-    })  
+    });
 }
 
-  Promise.all([api.getName(), api.getAllCards()])
+Promise.all([api.getName(), api.getAllCards()])
   .then(([data, array]) => {
     userInfo.setUserInfo({ avatar: data.avatar, id: data._id });
     userInfo.setUserName({ name: data.name, about: data.about });
